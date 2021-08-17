@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RD.Core.Data
+namespace RD.Core.Domain
 {
     public interface IGenericRepository<T> where T:AggregateEntity
     {

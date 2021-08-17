@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using RD.Core.Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,24 +41,44 @@ namespace RD.Core.Data
            
         }
 
-        public Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate)
+        public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await this.dbSet.Where(predicate).ToListAsync();
         }
 
-        public Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
-            throw new NotImplementedException();
+            return await this.dbSet.ToListAsync<T>();
         }
 
-        public Task<T> GetById(Guid id)
+        public async Task<T> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return await this.dbSet.Where<T>(d => d.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task<bool> Upsert(T entity)
+        public async Task<bool> Upsert(T entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+               var existingUser= await dbSet.Where(d => d.Id == entity.Id).FirstOrDefaultAsync();
+               var properties= typeof(T).GetProperties();
+                foreach(var prop in properties)
+                {
+                    if (prop.DeclaringType == typeof(Entity)||prop.Name==nameof(Entity.Id))
+                    {
+                        continue;
+                    }
+                   var updateValue= prop.GetValue(entity);
+                    prop.SetValue(existingUser, updateValue);
+                
+                }
+
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RD.Core.Data", "RD.Core.Data\RD.Core.Data.csproj", "{52A77418-C4B1-4A90-AA77-31C6984A796B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RD.Core.Data", "RD.Core.Data\RD.Core.Data.csproj", "{52A77418-C4B1-4A90-AA77-31C6984A796B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RD.Core.Domain", "RD.Core.Domain\RD.Core.Domain.csproj", "{E7F47CC1-EBB9-422B-88A8-0B928D62376D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RD.Core.Domain", "RD.Core.Domain\RD.Core.Domain.csproj", "{E7F47CC1-EBB9-422B-88A8-0B928D62376D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
